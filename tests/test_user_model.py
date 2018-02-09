@@ -3,19 +3,20 @@ from app.models import User
 
 
 class UserModelTestCase(unittest.TestCase):
-    def test_password_setter(self):
-        u = User(password='cat')
-        self.assertTrue(u.password_hash is not None)
 
-    def test_no_password_getter(self):
-        u = User(password='cat')
+    def setUp(self):
+        self.new_user = User(password='bull')
+
+    def test_password_setter(self):
+        self.assertTrue(self.new_user.password_hash is not None)
+
+    def test_no_access_password(self):
         with self.assertRaises(AttributeError):
-            u.password
+            self.new_user.password
 
     def test_password_verification(self):
-        u = User(password='cat')
-        self.assertTrue(u.verify_password('cat'))
-        self.assertTrue(u.verify_password('dog'))
+        self.assertTrue(self.new_user.verify_password('bull'))
+        self.assertTrue(self.new_user.verify_password('bull'))
 
     # def test_password_salts_are_random('self'):
     #     u = User(password='cat')
