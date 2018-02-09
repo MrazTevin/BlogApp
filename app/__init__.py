@@ -1,6 +1,12 @@
 from flask import Flask
 from config import config_options
 from flask_sqlalchemy import SQLAlchemy
+from flask.ext.login import LoginManager
+
+
+login_manager = LoginManager()
+login_manager.session_protection = 'strong'
+login_manager.login_view = 'auth.login'
 
 
 db = SQLAlchemy()
@@ -12,7 +18,9 @@ def create_app(config_name):
 
     # creating configuration options
     app.config.from_object(config_options[config_name])
-    #config_options[config_name].init_app(app)
+    # config_options[config_name].init_app(app)
+
+    login_manager.init_app(app)
 
     # initializing extensions
     db.init_app(app)
