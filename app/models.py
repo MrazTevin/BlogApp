@@ -3,12 +3,17 @@ from . import db
 
 
 class User(db.Model):
-    # __tablename__ = 'users'
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(255))
     password_hash = db.Column(db.String(128))
+
+    def __repr__(self):
+        return f'User {self.username}'
 
 
 @property
-def pasword(self):
+def password(self):
     raise AttributeError('password is not a readable attribute')
 
 
