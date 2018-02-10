@@ -1,7 +1,8 @@
-from flask.ext.login import login_required
+from flask_login import login_required
+from . import main
 
 
-@main.route('/secret')
+@main.route('/blog/new/<int:id>', methods=['GET', 'POST'])
 @login_required
-def secret():
+def new_blog(id):
     return 'Only authenticated users are allowed!'
