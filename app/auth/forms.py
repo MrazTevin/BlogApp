@@ -3,7 +3,7 @@ from wtforms import StringField,PasswordField,BooleanField,SubmitField
 from wtforms.validators import Required, Email
 
 
-class LoginForm(Form):
+class LoginForm(FlaskForm):
     email = StringField('Email', validators=[Required(), Length(1, 64),
                                              Email()])
     password = PasswordField('Password', validators=[Required()])
